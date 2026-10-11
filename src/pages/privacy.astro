@@ -1,0 +1,37 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<MainLayout title="Политика конфиденциальности | Vibe-Coder" description="Политика конфиденциальности и обработки персональных данных Vibe-Coder.">
+  <Header />
+  <main id="main-content" class="flex-1 py-24 px-4">
+    <div class="container-custom max-w-3xl">
+      <h1 class="text-3xl md:text-4xl font-display font-bold">Политика конфиденциальности</h1>
+      <!-- TODO: заменить на юридически выверенный текст политики перед публикацией -->
+      <p class="mt-4 badge">Черновик. Заменить на юридически выверенный текст перед публикацией.</p>
+
+      <section class="mt-10 space-y-4 text-dark-300 leading-relaxed">
+        <h2 class="text-xl font-semibold text-dark-50">Какие данные собирает форма</h2>
+        <p>Форма заявки на сайте собирает: имя, контакт (Telegram, телефон или почта), нишу, описание задачи, дедлайн, бюджет и ссылку на материалы. Все поля передаются только при нажатии «Отправить заявку».</p>
+
+        <h2 class="mt-8 text-xl font-semibold text-dark-50">Зачем используются данные</h2>
+        <p>Данные используются исключительно для связи по проекту: чтобы уточнить задачу, подготовить оценку и согласовать условия работы. Данные не передаются третьим лицам и не используются для рассылок.</p>
+
+        <h2 class="mt-8 text-xl font-semibold text-dark-50">Хранение и удаление</h2>
+        <p>Заявки хранятся только на сервисе приёма форм (Netlify Forms) и в переписке. По желанию вы можете попросить удалить ваши данные — достаточно написать в один из каналов связи ниже.</p>
+
+        <h2 class="mt-8 text-xl font-semibold text-dark-50">Каналы связи</h2>
+        <ul class="mt-3 space-y-2 list-disc list-inside">
+          <li><a class="link" href="https://t.me/andres0874" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+          <li><a class="link" href="https://vk.ru/andr8andr" target="_blank" rel="noopener noreferrer">ВКонтакте</a></li>
+          <li><a class="link" href="https://max.ru/u/f9LHodD0cOISP17jyw9Ud6MqLa4bMyCq7FDcqKCrQH1qsl4NGx_zK3fBdCk" target="_blank" rel="noopener noreferrer">MAX</a></li>
+          <li><a class="link" href="mailto:andr8andr@gmail.com">Email: andr8andr@gmail.com</a></li>
+          <li><a class="link" href="https://github.com/andr8andr-max" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</MainLayout>

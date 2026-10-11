@@ -1,0 +1,36 @@
+---
+import FooterContacts from './FooterContacts.astro';
+
+const navLinks = [
+  { label: 'Кейсы', href: '#cases' },
+  { label: 'Услуги', href: '#services' },
+  { label: 'Обо мне', href: '#about' },
+  { label: 'Цены', href: '#pricing' },
+  { label: 'Как я работаю', href: '#process' },
+];
+---
+<footer class="bg-dark-950 border-t border-dark-800 mt-auto" role="contentinfo">
+  <div class="container-custom px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+      <div class="text-center md:text-left md:max-w-sm">
+        <p class="text-sm text-dark-400 mb-2">Vibe-Coder — фрилансер-разработчик для малого бизнеса. Делаю лендинги, чат-боты, AI-ботов, десктоп-калькуляторы, веб-трекеры и автоматизации. Использую AI для скорости, но отвечаю за рабочий результат.</p>
+        <p class="text-xs text-dark-500">© 2026 Vibe-Coder. Разработка сайтов, ботов и автоматизаций для малого бизнеса.</p>
+      </div>
+
+      <nav aria-label="Ссылки в подвале" class="text-center md:text-left">
+        <ul class="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-2">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-dark-400 hover:text-accent transition-colors duration-200">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="flex flex-col items-center md:items-end gap-4">
+        <FooterContacts />
+        <p class="text-xs text-dark-500"><a href="/privacy" class="hover:text-accent transition-colors">Политика конфиденциальности</a></p>
+      </div>
+    </div>
+  </div>
+</footer>

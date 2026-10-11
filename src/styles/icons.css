@@ -1,0 +1,83 @@
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  flex: 0 0 auto;
+  color: var(--footer-icon-color, rgba(255, 255, 255, 0.72));
+  transition: color var(--transition-fast, 150ms ease), background-color var(--transition-fast, 150ms ease);
+  text-decoration: none;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  color: var(--footer-icon-hover-color, #ffffff);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-contact-link:focus-visible {
+  outline: 2px solid var(--color-focus, #22c55e);
+  outline-offset: 2px;
+  color: var(--footer-icon-focus-color, #ffffff);
+}
+
+.footer-contact-link:active {
+  transform: translateY(1px);
+}
+
+.footer-contact-icon {
+  display: block;
+  width: var(--icon-size, 24px);
+  height: var(--icon-size, 24px);
+  background-color: currentColor;
+  -webkit-mask-image: var(--icon-mask);
+  mask-image: var(--icon-mask);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.footer-contact-link--github {
+  --icon-size: 26px;
+  --icon-mask: url('/icons/github-mark.svg');
+}
+
+.footer-contact-link--telegram {
+  --icon-size: 30px;
+  --icon-mask: url('/icons/telegram_amber.png');
+}
+
+.footer-contact-link--vk {
+  --icon-size: 44px;
+  --icon-mask: url('/icons/vk-logo.png');
+}
+
+.footer-contact-link--max {
+  --icon-size: 30px;
+  --icon-mask: url('/icons/max_black.png');
+}
+
+.footer-contact-link--email {
+  --icon-size: 26px;
+  --icon-mask: url('/icons/email-envelope.svg');
+}
+
+@media (max-width: 480px) {
+  .footer-contact-link {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.footer-contacts-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

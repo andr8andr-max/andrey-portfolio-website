@@ -1,0 +1,63 @@
+---
+const steps = [
+  {
+    title: 'Короткий бриф',
+    text: 'Вы описываете задачу: что нужно, для кого, какие есть боли, есть ли примеры, сроки и бюджет.',
+  },
+  {
+    title: 'Оценка и план',
+    text: 'Я говорю, что реально сделать в рамках бюджета, какие есть варианты, какие риски и что входит в результат.',
+  },
+  {
+    title: 'Прототип / структура',
+    text: 'Для сайта — структура и текст. Для бота — сценарии. Для программы — логика расчётов. Для трекера — этапы и роли.',
+  },
+  {
+    title: 'Разработка',
+    text: 'Собираю решение, подключаю интеграции, делаю интерфейс, тестирую основные сценарии.',
+  },
+  {
+    title: 'Демонстрация и правки',
+    text: 'Показываю рабочий результат. Вносим правки по договорённости.',
+  },
+  {
+    title: 'Запуск',
+    text: 'Публикую, передаю доступы, объясняю, как пользоваться. При необходимости оставляю инструкцию.',
+  },
+  {
+    title: 'Поддержка',
+    text: 'Могу сопровождать проект, дорабатывать и масштабировать по мере роста бизнеса.',
+  },
+];
+---
+<section id="process" class="section" aria-labelledby="process-title">
+  <div class="container-custom px-4 sm:px-6 lg:px-8">
+    <header class="section-header">
+      <h2 id="process-title" class="section-title">Как проходит работа</h2>
+      <p class="section-subtitle">
+        Если у вас нет готового ТЗ, я помогу сформулировать задачу через короткий бриф: часто малому бизнесу нужно не ТЗ, а чтобы кто-то перевёл «хочу, чтобы клиенты записывались» в нормальный цифровой процесс.
+      </p>
+    </header>
+
+    <ol class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {steps.map((step, i) => (
+        <li class="card group relative">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-full bg-accent/15 text-accent font-heading font-bold flex items-center justify-center text-sm" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <span class="text-xs text-dark-500 font-medium uppercase tracking-wider">Шаг {i + 1} из 7</span>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-white mb-2">{step.title}</h3>
+          <p class="text-dark-300 leading-relaxed">
+            {step.text}
+          </p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="text-center mt-12 animate-in">
+      <a href="#contact" class="btn-primary inline-flex">Обсудить задачу</a>
+    </div>
+  </div>
+</section>

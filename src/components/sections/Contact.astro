@@ -1,0 +1,178 @@
+---
+const telegram = 'https://t.me/andres0874';
+const vk = 'https://vk.ru/andr8andr';
+const max = 'https://max.ru/u/f9LHodD0cOISP17jyw9Ud6MqLa4bMyCq7FDcqKCrQH1qsl4NGx_zK3fBdCk';
+const email = 'mailto:andr8andr@gmail.com';
+const github = 'https://github.com/andr8andr-max';
+
+const altContacts = [
+  { label: 'Написать в Telegram', href: telegram, external: true },
+  { label: 'Написать в ВКонтакте', href: vk, external: true },
+  { label: 'Написать в MAX', href: max, external: true },
+  { label: 'Написать на Email', href: email, external: false },
+  { label: 'GitHub', href: github, external: true },
+];
+---
+<section id="contact" class="section" aria-labelledby="contact-title">
+  <div class="container-custom px-4 sm:px-6 lg:px-8">
+    <header class="section-header">
+      <h2 id="contact-title" class="section-title">Обсудим вашу задачу</h2>
+      <p class="section-subtitle">
+        Напишите, что нужно сделать: сайт, бот, калькулятор, трекер или автоматизацию. Отвечу, что можно реализовать, в какие сроки и по какой стоимости.
+      </p>
+    </header>
+
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
+      <div class="card">
+        <h3 class="font-heading text-xl font-semibold text-white mb-6">Форма заявки</h3>
+
+        <form
+          id="contact-form"
+          name="contact"
+          method="POST"
+          action="#contact"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="space-y-5"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden" aria-hidden="true">
+            <label>Не заполняйте это поле: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
+          <div>
+            <label for="f-name" class="block text-sm font-medium text-dark-300 mb-1.5">Имя *</label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Имя" class="form-field" />
+          </div>
+
+          <div>
+            <label for="f-contact" class="block text-sm font-medium text-dark-300 mb-1.5">Удобный контакт *</label>
+            <input id="f-contact" name="contact" type="text" required placeholder="Telegram / ВКонтакте / MAX / email" class="form-field" />
+          </div>
+
+          <div>
+            <label for="f-niche" class="block text-sm font-medium text-dark-300 mb-1.5">Ниша бизнеса</label>
+            <input id="f-niche" name="niche" type="text" placeholder="Ниша бизнеса" class="form-field" />
+          </div>
+
+          <div>
+            <label for="f-task" class="block text-sm font-medium text-dark-300 mb-1.5">Что нужно сделать *</label>
+            <textarea id="f-task" name="task" rows="4" required placeholder="Нужен лендинг / бот / калькулятор / трекер" class="form-field resize-y"></textarea>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="f-deadline" class="block text-sm font-medium text-dark-300 mb-1.5">Есть ли дедлайн?</label>
+              <input id="f-deadline" name="deadline" type="text" placeholder="Есть ли дедлайн?" class="form-field" />
+            </div>
+            <div>
+              <label for="f-budget" class="block text-sm font-medium text-dark-300 mb-1.5">Примерный бюджет</label>
+              <input id="f-budget" name="budget" type="text" placeholder="Примерный бюджет" class="form-field" />
+            </div>
+          </div>
+
+          <div>
+            <label for="f-materials" class="block text-sm font-medium text-dark-300 mb-1.5">Ссылка на пример / ТЗ / материалы, если есть</label>
+            <input id="f-materials" name="materials" type="text" placeholder="https://" class="form-field" />
+          </div>
+
+          <label for="f-consent" class="flex items-center gap-3 cursor-pointer">
+            <input id="f-consent" name="consent" type="checkbox" required class="w-5 h-5 flex-shrink-0 accent-accent cursor-pointer" />
+            <span class="text-sm text-dark-300">Согласен на обработку персональных данных *</span>
+          </label>
+
+          <button type="submit" class="btn-primary w-full sm:w-auto">Отправить заявку</button>
+
+          <div id="form-status" class="hidden text-sm" role="status" aria-live="polite"></div>
+        </form>
+
+        <div id="form-success" class="hidden text-center py-8" tabindex="-1">
+          <p class="text-lg font-medium text-white mb-3">Заявка отправлена. Я свяжусь с вами.</p>
+          <a href={telegram} target="_blank" rel="noopener noreferrer" class="btn-secondary inline-flex">Написать в Telegram</a>
+        </div>
+
+        <div id="form-error" class="hidden mt-4 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-dark-200" tabindex="-1">
+          <p class="mb-2">Не удалось отправить форму: Netlify Forms обрабатывает заявки после деплоя на Netlify, локальный сервер отправку не принимает.</p>
+          <a href={telegram} target="_blank" rel="noopener noreferrer" class="link font-medium">Пока можно написать в Telegram</a>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="card">
+          <h3 class="font-heading text-xl font-semibold text-white mb-4">Альтернативные контакты</h3>
+          <ul class="space-y-3">
+            {altContacts.map((c) => (
+              <li>
+                <a
+                  href={c.href}
+                  target={c.external ? '_blank' : undefined}
+                  rel={c.external ? 'noopener noreferrer' : undefined}
+                  class="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-dark-800/50 border border-dark-700 hover:border-accent hover:bg-dark-800 transition-colors group"
+                >
+                  <span class="font-medium text-white group-hover:text-accent transition-colors">{c.label}</span>
+                  <svg class="w-4 h-4 flex-shrink-0 text-dark-500 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card">
+          <p class="text-dark-300 leading-relaxed mb-4">
+            Если задача простая, можно сразу написать в Telegram: «Нужен лендинг / бот / калькулятор / трекер».
+          </p>
+          <a href={telegram} target="_blank" rel="noopener noreferrer" class="btn-primary w-full sm:w-auto justify-center">Написать в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const successBox = document.getElementById('form-success');
+  const errorBox = document.getElementById('form-error');
+
+  const trackForm = (name) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: name });
+  };
+
+  if (form instanceof HTMLFormElement && successBox && errorBox) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      trackForm('form_submit');
+
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn instanceof HTMLButtonElement) btn.disabled = true;
+      errorBox.classList.add('hidden');
+
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        trackForm('form_success');
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        successBox.focus();
+      } catch {
+        trackForm('form_error');
+        errorBox.classList.remove('hidden');
+        errorBox.focus();
+      } finally {
+        if (btn instanceof HTMLButtonElement) btn.disabled = false;
+      }
+    });
+  }
+</script>

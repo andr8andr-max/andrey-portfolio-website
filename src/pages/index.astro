@@ -1,0 +1,57 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import Pains from '../components/sections/Pains.astro';
+import Services from '../components/sections/Services.astro';
+import Cases from '../components/sections/Cases.astro';
+import About from '../components/sections/About.astro';
+import AiApproach from '../components/sections/AiApproach.astro';
+import Trust from '../components/sections/Trust.astro';
+import Pricing from '../components/sections/Pricing.astro';
+import Process from '../components/sections/Process.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Contact from '../components/sections/Contact.astro';
+import StickyCTA from '../components/ui/StickyCTA.astro';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Vibe-Coder',
+  jobTitle: 'Разработчик для малого бизнеса',
+  email: 'mailto:andr8andr@gmail.com',
+  sameAs: [
+    'https://github.com/andr8andr-max',
+    'https://t.me/andres0874',
+    'https://vk.ru/andr8andr',
+    'https://max.ru/u/f9LHodD0cOISP17jyw9Ud6MqLa4bMyCq7FDcqKCrQH1qsl4NGx_zK3fBdCk',
+  ],
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Vibe-Coder',
+  url: 'https://vibecoder.ru/',
+};
+---
+<MainLayout title="Vibe-Coder | Сайты, чат-боты и автоматизации для малого бизнеса" description="Фрилансер-разработчик для малого бизнеса. Делаю лендинги с заявками, AI-чат-ботов, калькуляторы заказов, канбан-трекеры и интеграции. Кейсы, демо, GitHub. Цены от 5 000 ₽.">
+  <Header />
+  <main id="main-content" class="flex-1">
+    <Hero />
+    <Pains />
+    <Services />
+    <Cases />
+    <About />
+    <AiApproach />
+    <Trust />
+    <Pricing />
+    <Process />
+    <FAQ />
+    <Contact />
+  </main>
+  <Footer />
+  <StickyCTA />
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+</MainLayout>

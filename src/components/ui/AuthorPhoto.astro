@@ -1,0 +1,120 @@
+---
+interface Props {
+  variant: 'hero' | 'about';
+  src?: string;
+  placeholderSrc?: string;
+  alt: string;
+  loading?: 'eager' | 'lazy';
+  priority?: boolean;
+}
+const {
+  variant,
+  src,
+  placeholderSrc,
+  alt,
+  loading = variant === 'hero' ? 'eager' : 'lazy',
+  priority = variant === 'hero',
+} = Astro.props;
+
+const isHero = variant === 'hero';
+const finalSrc = src || placeholderSrc || (isHero ? '/images/hero-author-placeholder.svg' : '/images/about-author-placeholder.svg');
+const isPlaceholder = !src || src === placeholderSrc;
+const width = isHero ? 280 : 400;
+const height = isHero ? 280 : 500;
+const sizes = isHero ? '(max-width: 768px) 120px, 280px' : '(max-width: 768px) 100vw, 400px';
+const className = `author-photo author-photo--${variant} ${isPlaceholder ? 'author-photo--placeholder' : ''}`;
+---
+
+<div class={className} aria-hidden={isPlaceholder}>
+  <picture>
+    {finalSrc.endsWith('.svg') ? (
+      <img
+        src={finalSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={loading}
+        fetchpriority={priority ? 'high' : 'auto'}
+        decoding="async"
+        class="w-full h-full object-cover rounded-2xl"
+      />
+    ) : (
+      <>
+        <source srcset={finalSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '.webp')} type="image/webp" />
+        <img
+          src={finalSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={loading}
+          fetchpriority={priority ? 'high' : 'auto'}
+          decoding="async"
+          class="w-full h-full object-cover rounded-2xl"
+        />
+      </>
+    )}
+  </picture>
+  {isPlaceholder && (
+    <div class="absolute inset-0 flex items-end justify-center p-4 pointer-events-none">
+      <span class="text-xs text-dark-500 bg-dark-900/80 backdrop-blur-sm px-3 py-1 rounded-full whitespace-nowrap">
+        TODO: заменить на реальное фото автора
+      </span>
+    </div>
+  )}
+</div>
+
+<style is:global>
+  .author-photo {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e293b 100%);
+  }
+
+  .author-photo--hero {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .author-photo--about {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4 / 5;
+  }
+
+  .author-photo--placeholder {
+    border: 2px dashed #334155;
+  }
+
+  .author-photo--placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e293b 100%);
+    z-index: 0;
+  }
+
+  .author-photo img {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+  }
+
+  .author-photo:hover img {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 768px) {
+    .author-photo--hero {
+      max-width: 140px;
+      margin: 0 auto;
+    }
+
+    .author-photo--about {
+      max-width: 100%;
+      max-height: 420px;
+      margin: 0 auto;
+    }
+  }
+</style>

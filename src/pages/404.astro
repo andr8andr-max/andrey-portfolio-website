@@ -1,0 +1,18 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<MainLayout title="Страница не найдена | Vibe-Coder" description="Страница не найдена. Вернитесь на главную — сайты, чат-боты и автоматизации для малого бизнеса.">
+  <Header />
+  <main id="main-content" class="flex-1 flex items-center justify-center py-24 px-4">
+    <div class="text-center max-w-md">
+      <p class="text-7xl font-display font-bold text-accent select-none">404</p>
+      <h1 class="mt-4 text-2xl font-display font-bold">Страница не найдена</h1>
+      <p class="mt-3 text-dark-400">Возможно, ссылка устарела или страницы не существует.</p>
+      <a href="/" class="btn btn-primary mt-8">На главную</a>
+    </div>
+  </main>
+  <Footer />
+</MainLayout>

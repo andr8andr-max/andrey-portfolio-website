@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Критически важно: после всех @tailwind директив.
+   Восстанавливаем дефолтные отступы параграфов, которые сбрасывает Normalize.css в @tailwind base.
+   Это заставляет Tailwind-утилиты (mb-*, space-y-*, text-lg, leading-relaxed) работать на <p>. */
+p {
+  margin: 1em 0;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-dark-950 text-dark-50 font-sans antialiased pb-16 md:pb-0;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-dark-950;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10;
+  }
+
+  .section {
+    @apply py-16 sm:py-20 lg:py-24 xl:py-28;
+  }
+
+  .section-header {
+    @apply text-center max-w-3xl mx-auto mb-12;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg sm:text-xl text-dark-300 leading-relaxed;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-base transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-dark-950 hover:bg-accent-hover active:bg-accent-hover/90 shadow-lg shadow-accent/25;
+  }
+
+  .btn-secondary {
+    @apply btn bg-dark-800 text-white border border-dark-600 hover:bg-dark-700 hover:border-dark-500 active:bg-dark-700/90;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-dark-300 hover:text-white hover:bg-dark-800/50 active:bg-dark-800;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-dark-800 text-dark-300 border border-dark-600;
+  }
+
+  .card {
+    @apply bg-dark-900/50 backdrop-blur-sm border border-dark-700 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-dark-600 hover:shadow-xl hover:shadow-accent/5;
+  }
+
+  .link {
+    @apply text-accent hover:text-accent-light transition-colors duration-200 underline-offset-2 hover:underline;
+  }
+
+  .form-field {
+    @apply w-full rounded-xl bg-dark-900 border border-dark-700 px-4 py-3 text-base text-dark-50 placeholder:text-dark-500 transition-colors duration-200 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent;
+  }
+
+  .sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+    background-color: rgba(2, 6, 23, 0.92);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #1e293b;
+    transform: translateY(110%);
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0.25s ease;
+    pointer-events: none;
+  }
+
+  .sticky-cta.is-visible {
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .sticky-cta .btn {
+    flex: 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

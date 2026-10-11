@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Vibe-Coder Hero Placeholder</title>
+  <desc id="desc">Placeholder for author photo in Hero section. TODO: replace with real photo.</desc>
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="url(#bgGradient)"/>
+  <circle cx="100" cy="85" r="38" fill="none" stroke="url(#accentGradient)" stroke-width="2" opacity="0.6"/>
+  <circle cx="100" cy="85" r="28" fill="url(#accentGradient)" opacity="0.15"/>
+  <text x="100" y="155" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#22c55e" letter-spacing="0.1em">VC</text>
+  <text x="100" y="175" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">TODO: replace photo</text>
+</svg>

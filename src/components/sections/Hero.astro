@@ -1,0 +1,80 @@
+---
+import AuthorPhoto from '../ui/AuthorPhoto.astro';
+
+const codeBlock = `<span class="text-accent">//</span> <span class="text-dark-500">Vibe-Coder Portfolio</span>
+<span class="text-accent">//</span> <span class="text-dark-500">AI-assisted development</span>
+
+<span class="text-green-400">const</span> developer = {
+  <span class="text-yellow-300">role</span>: <span class="text-blue-300">'Vibe-Coder'</span>,
+  <span class="text-yellow-300">focus</span>: <span class="text-blue-300">'Small Business'</span>,
+  <span class="text-yellow-300">stack</span>: [
+    <span class="text-blue-300">'Astro'</span>,
+    <span class="text-blue-300">'Tailwind'</span>,
+    <span class="text-blue-300">'Python'</span>,
+    <span class="text-blue-300">'AI Tools'</span>
+  ],
+  <span class="text-yellow-300">approach</span>: <span class="text-blue-300">'AI + Human Control'</span>
+};
+
+<span class="text-accent">//</span> <span class="text-dark-500">Delivering results, not just code</span>`;
+---
+<section id="hero" class="relative min-h-screen flex items-center justify-center pt-16 pb-12 lg:pb-20 overflow-hidden" aria-labelledby="hero-title">
+  <div class="container-custom">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div class="text-center lg:text-left max-w-xl mx-auto lg:mx-0 animate-in">
+        <h1 id="hero-title" class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+          Сайты, чат-боты и&nbsp;автоматизации для&nbsp;малого бизнеса
+        </h1>
+        <p class="text-lg sm:text-xl lg:text-2xl text-dark-300 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+          Я&nbsp;Vibe-Coder и&nbsp;фрилансер-разработчик. Собираю работающие решения под&nbsp;ключ: лендинги с&nbsp;заявками, AI-чат-боты, калькуляторы заказов, канбан-трекеры и&nbsp;интеграции. Использую AI для скорости, но&nbsp;отвечаю за&nbsp;логику, качество и&nbsp;запуск.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10 animate-in delay-100">
+          <a href="#contact" class="btn-primary w-full sm:w-auto">
+            Обсудить задачу
+          </a>
+          <a href="#cases" class="btn-secondary w-full sm:w-auto">
+            Смотреть кейсы
+          </a>
+        </div>
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-sm text-dark-400 animate-in delay-200">
+          <span class="badge">От 5&nbsp;000&nbsp;₽</span>
+          <span class="badge">Запуск от 3 дней</span>
+          <span class="badge">Демо и&nbsp;GitHub</span>
+          <span class="badge">Малый бизнес без лишней воды</span>
+          <span class="badge">Сайт + бот + автоматизация</span>
+        </div>
+      </div>
+
+      <div class="relative animate-in delay-300">
+        <div class="relative flex justify-center lg:justify-end">
+          <AuthorPhoto
+            variant="hero"
+            src="/images/hero-author.jpg"
+            placeholderSrc="/images/hero-author-placeholder.svg"
+            alt="Фото Vibe-Coder — разработчик для малого бизнеса"
+            loading="eager"
+            priority
+          />
+        </div>
+        <div class="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 hidden lg:block opacity-50">
+          <div class="bg-dark-900/50 backdrop-blur-sm border border-dark-700 rounded-xl p-4 min-w-[280px] font-mono text-xs text-dark-400">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <pre class="whitespace-pre-wrap" set:html={codeBlock}></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
+    <a href="#services" class="text-dark-500 hover:text-accent transition-colors duration-300">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </a>
+  </div>
+</section>

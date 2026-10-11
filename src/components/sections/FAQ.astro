@@ -1,0 +1,72 @@
+---
+const faqs = [
+  {
+    q: 'Ты делаешь сайты на AI? Это будет качественно?',
+    a: 'AI помогает мне быстрее генерировать код, тексты и варианты решений. Но финальное качество, логику, интеграции и тесты я контролирую вручную. Мне важно, чтобы продукт работал на задачу бизнеса, а не просто выглядел как сгенерированный.',
+  },
+  {
+    q: 'Можно ли заказать только лендинг?',
+    a: 'Да. Лендинг с формой заявки — один из самых быстрых форматов. Можно начать с него, а позже добавить бота, таблицу, CRM-логику или трекер.',
+  },
+  {
+    q: 'Ты работаешь с малым бизнесом без техзадания?',
+    a: 'Да. Если у вас нет готового ТЗ, я помогу сформулировать задачу через короткий бриф. Часто малому бизнесу нужно не ТЗ, а чтобы кто-то перевёл «хочу, чтобы клиенты записывались» в нормальный цифровой процесс.',
+  },
+  {
+    q: 'Сколько стоит проект?',
+    a: 'Стартовые цены указаны на сайте. Точная стоимость зависит от сложности: количество страниц, интеграции, база знаний, роли, API, документы, дизайн, сроки.',
+  },
+  {
+    q: 'Ты даёшь исходники?',
+    a: 'Да, для большинства проектов можно передавать исходники и доступы. Для GitHub-проектов я публикую репозитории или передаю доступ к коду.',
+  },
+  {
+    q: 'Что если мне нужно доработать позже?',
+    a: 'Можно начинать с MVP и развивать систему. Я закладываю архитектуру так, чтобы позже добавить новые статусы, интеграции, пользователей, отчёты или AI-функции.',
+  },
+  {
+    q: 'Ты делаешь мобильные приложения?',
+    a: 'Да, могу делать мобильные приложения и веб-приложения. Для малого бизнеса часто выгоднее начать с адаптивного веб-решения, а мобильное приложение добавлять, когда есть смысл.',
+  },
+  {
+    q: 'Как связаться?',
+    a: 'Лучше всего через Telegram, ВКонтакте, MAX, Email или форму на сайте. Опишите задачу: ниша, что нужно, сроки, примерный бюджет и ссылки, если есть.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+<section id="faq" class="section" aria-labelledby="faq-title">
+  <div class="container-custom px-4 sm:px-6 lg:px-8">
+    <header class="section-header">
+      <h2 id="faq-title" class="section-title">Частые вопросы</h2>
+    </header>
+
+    <div class="max-w-3xl mx-auto">
+      {faqs.map((item) => (
+        <details class="group border-b border-dark-700">
+          <summary class="flex items-start justify-between gap-4 py-5 cursor-pointer list-none [&::-webkit-details-marker]:hidden text-base sm:text-lg font-medium text-white hover:text-accent transition-colors duration-200">
+            <span class="flex-1">{item.q}</span>
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-dark-800 group-hover:bg-dark-700 flex items-center justify-center transition-colors" aria-hidden="true">
+              <svg class="w-4 h-4 text-accent transition-transform duration-200 group-[open]:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+            </span>
+          </summary>
+          <div class="pb-5 pr-12 text-dark-300 leading-relaxed">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>

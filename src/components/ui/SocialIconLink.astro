@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  icon: 'github' | 'telegram' | 'vk' | 'max' | 'email';
+  external?: boolean;
+}
+const { href, label, icon, external = true } = Astro.props;
+const iconClass = `footer-contact-link footer-contact-link--${icon}`;
+const ariaLabel = label;
+---
+<a
+  href={href}
+  class={iconClass}
+  aria-label={ariaLabel}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  title={ariaLabel}
+>
+  <span class="footer-contact-icon" aria-hidden="true"></span>
+</a>

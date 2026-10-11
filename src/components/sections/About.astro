@@ -1,0 +1,76 @@
+---
+import AuthorPhoto from '../ui/AuthorPhoto.astro';
+---
+<section id="about" class="section" aria-labelledby="about-title">
+  <div class="container-custom px-4 sm:px-6 lg:px-8">
+    <header class="section-header mb-12">
+      <h2 id="about-title" class="section-title">Обо мне</h2>
+      <p class="section-subtitle">
+        Я Vibe-Coder — фрилансер-разработчик для малого бизнеса. Помогаю небольшим компаниям, экспертам и сервисам запускать сайты, ботов, калькуляторы и трекеры без дорогой бюрократии.
+      </p>
+    </header>
+
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div class="order-2 lg:order-1">
+        <AuthorPhoto
+          variant="about"
+          src="/images/about-author.jpg"
+          placeholderSrc="/images/about-author-placeholder.svg"
+          alt="Фото Vibe-Coder — фрилансер-разработчик для малого бизнеса"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="order-1 lg:order-2">
+        <div class="space-y-8">
+          <p class="text-dark-300 text-lg leading-relaxed mb-8">
+            Я не просто собираю страницы по шаблону. Сначала разбираю бизнес-задачу: где теряются заявки, что считается вручную, какие процессы хаотичны, где нужна автоматизация или удобный интерфейс.
+          </p>
+          <p class="text-dark-300 text-lg leading-relaxed mb-8">
+            Работаю индивидуально: быстро делаю прототип, проверяю логику, подключаю интеграции, довожу до рабочего состояния и запускаю под ключ.
+          </p>
+          <p class="text-dark-300 text-lg leading-relaxed mb-10">
+            AI использую как ускоритель: он помогает быстрее генерировать код, тексты и варианты решений. Но архитектуру, бизнес-логику, тесты, безопасность и финальное качество контролирую я.
+          </p>
+
+          <div class="pt-6 border-t border-dark-700 space-y-6">
+            <div class="flex items-center gap-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-accent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <p class="text-dark-300 text-lg m-0">Работаю с малым бизнесом и микробизнесом.</p>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-accent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <p class="text-dark-300 text-lg m-0 mt-1.5">Делаю сайты, ботов, калькуляторы, трекеры и автоматизации.</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-accent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <p class="text-dark-300 text-lg m-0">Люблю скорость, но не в ущерб продуманности.</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-accent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <p class="text-dark-300 text-lg m-0">Показываю демо, код и понятный результат.</p>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn-primary inline-flex mt-10">Обсудить задачу</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
