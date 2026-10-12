@@ -92,7 +92,7 @@ const altContacts = [
         </div>
 
         <div id="form-error" class="hidden mt-4 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-dark-200" tabindex="-1">
-          <p class="mb-2">Не удалось отправить форму: Netlify Forms обрабатывает заявки после деплоя на Netlify, локальный сервер отправку не принимает.</p>
+          <p class="mb-2">Не удалось отправить форму (<span id="form-error-status">ошибка</span>). На локальной копии отправка не работает — только после деплоя на Netlify. Если сайт уже на Netlify: проверьте, что форма «contact» видна во вкладке Forms панели Netlify.</p>
           <a href={telegram} target="_blank" rel="noopener noreferrer" class="link font-medium">Пока можно написать в Telegram</a>
         </div>
       </div>
@@ -166,8 +166,12 @@ const altContacts = [
         form.classList.add('hidden');
         successBox.classList.remove('hidden');
         successBox.focus();
-      } catch {
+      } catch (err) {
         trackForm('form_error');
+        const statusEl = document.getElementById('form-error-status');
+        if (statusEl) {
+          statusEl.textContent = err instanceof Error && err.message ? 'статус ' + err.message : 'сеть недоступна';
+        }
         errorBox.classList.remove('hidden');
         errorBox.focus();
       } finally {
