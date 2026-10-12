@@ -30,3 +30,7 @@ coverage/
 # Misc
 *.tgz
 .cache/
+# Исходники скриншотов (обработанные копии лежат в public/images)
+*.png
+!public/**
+!src/**
