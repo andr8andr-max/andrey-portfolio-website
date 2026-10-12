@@ -34,3 +34,6 @@ coverage/
 *.png
 !public/**
 !src/**
+*.jpg
+!public/**
+!src/**
