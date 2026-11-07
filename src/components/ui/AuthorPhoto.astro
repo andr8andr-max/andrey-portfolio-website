@@ -19,9 +19,9 @@ const {
 const isHero = variant === 'hero';
 const finalSrc = src || placeholderSrc || (isHero ? '/images/hero-author-placeholder.svg' : '/images/about-author-placeholder.svg');
 const isPlaceholder = !src || src === placeholderSrc;
-const width = isHero ? 280 : 400;
-const height = isHero ? 280 : 500;
-const sizes = isHero ? '(max-width: 768px) 120px, 280px' : '(max-width: 768px) 100vw, 400px';
+const width = isHero ? 476 : 400;
+const height = isHero ? 476 : 500;
+const sizes = isHero ? '(max-width: 768px) 238px, 476px' : '(max-width: 768px) 100vw, 400px';
 const className = `author-photo author-photo--${variant} ${isPlaceholder ? 'author-photo--placeholder' : ''}`;
 ---
 
@@ -73,7 +73,7 @@ const className = `author-photo author-photo--${variant} ${isPlaceholder ? 'auth
 
   .author-photo--hero {
     width: 100%;
-    max-width: 280px;
+    max-width: 476px; /* 280px × 1.7 */
     aspect-ratio: 1 / 1;
   }
 
@@ -107,7 +107,7 @@ const className = `author-photo author-photo--${variant} ${isPlaceholder ? 'auth
 
   @media (max-width: 768px) {
     .author-photo--hero {
-      max-width: 140px;
+      max-width: 238px; /* 140px × 1.7 */
       margin: 0 auto;
     }
 
