@@ -37,3 +37,5 @@ coverage/
 *.jpg
 !public/**
 !src/**
+
+__pycache__/
