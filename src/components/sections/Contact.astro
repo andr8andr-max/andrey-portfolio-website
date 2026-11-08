@@ -2,7 +2,7 @@
 const telegram = 'https://t.me/andres0874';
 const vk = 'https://vk.ru/andr8andr';
 const max = 'https://max.ru/u/f9LHodD0cOISP17jyw9Ud6MqLa4bMyCq7FDcqKCrQH1qsl4NGx_zK3fBdCk';
-const email = 'mailto:andr8andr@gmail.com';
+const email = 'mailto:prof8888@yandex.ru';
 const github = 'https://github.com/andr8andr-max';
 
 const altContacts = [
@@ -30,12 +30,9 @@ const altContacts = [
           id="contact-form"
           name="contact"
           method="POST"
-          action="#contact"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
+          data-endpoint={import.meta.env.PUBLIC_FORM_ENDPOINT || ''}
           class="space-y-5"
         >
-          <input type="hidden" name="form-name" value="contact" />
           <p class="hidden" aria-hidden="true">
             <label>Не заполняйте это поле: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
           </p>
@@ -92,7 +89,7 @@ const altContacts = [
         </div>
 
         <div id="form-error" class="hidden mt-4 rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-sm text-dark-200" tabindex="-1">
-          <p class="mb-2">Не удалось отправить форму (<span id="form-error-status">ошибка</span>). На локальной копии отправка не работает — только после деплоя на Netlify. Если сайт уже на Netlify: проверьте, что форма «contact» видна во вкладке Forms панели Netlify.</p>
+          <p class="mb-2">Не удалось отправить форму (<span id="form-error-status">ошибка</span>). Попробуйте ещё раз или напишите напрямую в Telegram.</p>
           <a href={telegram} target="_blank" rel="noopener noreferrer" class="link font-medium">Пока можно написать в Telegram</a>
         </div>
       </div>
@@ -156,7 +153,9 @@ const altContacts = [
       errorBox.classList.add('hidden');
 
       try {
-        const res = await fetch('/', {
+        const endpoint = form.dataset.endpoint || '';
+        if (!endpoint) throw new Error('не настроен адрес формы');
+        const res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams(new FormData(form)).toString(),
@@ -170,7 +169,8 @@ const altContacts = [
         trackForm('form_error');
         const statusEl = document.getElementById('form-error-status');
         if (statusEl) {
-          statusEl.textContent = err instanceof Error && err.message ? 'статус ' + err.message : 'сеть недоступна';
+          const msg = err instanceof Error ? err.message : '';
+          statusEl.textContent = /^\d+$/.test(msg) ? 'статус ' + msg : (msg || 'сеть недоступна');
         }
         errorBox.classList.remove('hidden');
         errorBox.focus();

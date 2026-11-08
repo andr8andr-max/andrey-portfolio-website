@@ -8,15 +8,16 @@
 - показывает кейсы с демо и GitHub-ссылками;
 - блок «Обо мне» с фото автора;
 - объясняет AI-подход;
-- собирает заявки через форму (Netlify Forms);
+- собирает заявки через форму и отправляет их на почту;
 - показывает контакты в футере (иконки GitHub, Telegram, ВКонтакте, MAX, Email);
-- готов к деплою на Netlify.
+- готов к деплою на Yandex Cloud.
 
 ## Стек
 
 - **Astro** — статический сайт
 - **Tailwind CSS** — стилизация
-- **Netlify** — хостинг, Forms, редиректы/заголовки через `netlify.toml`
+- **Yandex Object Storage** — хостинг статики
+- **Yandex Cloud Functions** — обработчик формы
 - **Яндекс.Метрика** — placeholder (ID подставляется через `.env`, см. `YandexMetrika.astro`)
 
 ## Локальный запуск
@@ -28,15 +29,39 @@ npm run build      # production-сборка в dist/
 npm run preview    # превью production-сборки
 ```
 
-## Деплой на Netlify
+## Деплой на Yandex Cloud
 
-1. Залейте код в GitHub и подключите репозиторий к Netlify (Add new site → Import an existing project).
-2. Build command: `npm run build` (уже задан в `netlify.toml`).
-3. Publish directory: `dist` (уже задан в `netlify.toml`).
-4. Включите **Forms** (Site settings → Forms) — форма на странице уже имеет атрибуты `data-netlify="true"`, `method="POST"`, `name`, honeypot.
-5. Добавьте домен (Settings → Domain management).
-6. Проверьте отправку формы: после деплоя submit должен показывать «Заявка отправлена» (локально ожидается ошибка — Netlify Forms работают только на Netlify).
-7. При необходимости добавьте переменную `YANDEX_METRIKA_ID` в Environment variables.
+Схема:
+- **Сайт** — статика в Yandex Object Storage (бакет с включённым статическим хостингом). Загрузку делает GitHub Actions (`.github/workflows/deploy-yandex.yml`) при пуше в `master`.
+- **Форма** — Yandex Cloud Function (`yandex-function/index.py`). Она отправляет заявку на почту `prof8888@yandex.ru` через SMTP Яндекс Почты.
+
+### 1. Object Storage (сайт)
+1. Создайте бакет (например, `kaunov-site`) в облаке, включите **Static website hosting**: index `index.html`, error `404.html`.
+2. Сделайте бакет публичным для чтения (только `GetObject`).
+3. Создайте сервисный аккаунт с ролью `storage.editor` на бакет и статический ключ доступа (Access key).
+4. Подключите домен: Certificate Manager (сертификат Let's Encrypt) и CDN или DNS-запись на адрес сайта (уточните в инструкции облака).
+
+### 2. Cloud Function (форма)
+1. Создайте функцию (Python 3.11+), точка входа `index.handler`, загрузите `yandex-function/index.py`.
+2. Создайте HTTP-триггер или включите публичный доступ к функции. Скопируйте её URL.
+3. В переменных окружения функции задайте (значения секретные, в репозиторий не коммитить):
+   - `SMTP_USER` = `prof8888@yandex.ru`
+   - `SMTP_PASSWORD` = пароль приложения Яндекс Почты (Яндекс ID → Безопасность → Пароли приложений)
+   - `MAIL_TO` = `prof8888@yandex.ru`
+   - `ALLOWED_ORIGIN` = `https://kaunov.com`
+4. URL функции передайте сборке как переменную репозитория `PUBLIC_FORM_ENDPOINT` (это не секрет).
+
+### 3. GitHub
+В настройках репозитория (Settings → Secrets and variables → Actions):
+- Secrets: `YC_ACCESS_KEY_ID`, `YC_SECRET_ACCESS_KEY`
+- Variables: `YC_BUCKET` (имя бакета), `PUBLIC_FORM_ENDPOINT` (URL функции)
+
+Пуш в `master` запускает деплой сайта.
+
+### 4. Проверка
+- Откройте сайт по домену, отправьте тестовую заявку.
+- Письмо должно прийти на `prof8888@yandex.ru`.
+- Если ошибка: код статуса покажется под формой (например, 403 — неверный origin, 500 — не заданы переменные функции).
 
 После деплоя пройдите `TODO-deploy-checklist.md`.
 
@@ -55,7 +80,7 @@ npm run preview    # превью production-сборки
 - Telegram: https://t.me/andres0874
 - ВКонтакте: https://vk.ru/andr8andr
 - MAX: https://max.ru/u/f9LHodD0cOISP17jyw9Ud6MqLa4bMyCq7FDcqKCrQH1qsl4NGx_zK3fBdCk
-- Email: andr8andr@gmail.com
+- Email: prof8888@yandex.ru
 
 **WhatsApp не используется на сайте.**
 

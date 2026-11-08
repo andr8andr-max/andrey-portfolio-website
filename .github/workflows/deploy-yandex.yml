@@ -1,0 +1,51 @@
+name: Deploy to Yandex Object Storage
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-yandex
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_FORM_ENDPOINT: ${{ vars.PUBLIC_FORM_ENDPOINT }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.YC_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ru-central1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install AWS CLI (for S3-compatible API)
+        run: pip install --quiet awscli
+
+      - name: Upload site to bucket
+        run: |
+          aws s3 sync dist "s3://${{ vars.YC_BUCKET }}" \
+            --delete \
+            --endpoint-url https://storage.yandexcloud.net \
+            --cache-control "public, max-age=300"
+
+      - name: Upload hashed assets with long cache
+        run: |
+          aws s3 sync dist/_astro "s3://${{ vars.YC_BUCKET }}/_astro" \
+            --endpoint-url https://storage.yandexcloud.net \
+            --cache-control "public, max-age=31536000, immutable"

@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://vibecoder.ru',
+  site: 'https://kaunov.com',
   integrations: [
     tailwind({
       applyBaseStyles: false,

@@ -295,7 +295,7 @@ TODO только по файлам иконок, фото, скриншотам
 | **Telegram** | `https://t.me/andres0874` | Открывать в новой вкладке |
 | **ВКонтакте** | `https://vk.ru/andr8andr` | Открывать в новой вкладке |
 | **MAX** | `https://max.ru/u/f9LHodD0cOISP17jyw9Ud6MqLa4bMyCq7FDcqKCrQH1qsl4NGx_zK3fBdCk` | Открывать в новой вкладке |
-| **Email** | `mailto:andr8andr@gmail.com` | mailto: ссылка |
+| **Email** | `mailto:prof8888@yandex.ru` | mailto: ссылка (заменено по решению заказчика; ТЗ содержит старый адрес) |
 
 **Запрещено:** WhatsApp на сайте не использовать ни в каком виде.
 

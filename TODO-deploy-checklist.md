@@ -1,13 +1,14 @@
 # TODO — чек-лист после деплоя
 
-Что нужно заменить/добавить вручную после запуска на Netlify. Контакты (Telegram / VK / MAX / Email / GitHub) уже заданы и не являются TODO.
+Что нужно заменить/добавить вручную после запуска на Yandex Cloud. Контакты (Telegram / VK / MAX / Email / GitHub) уже заданы и не являются TODO.
 
 ## 1. Перед первым деплоем (в коде)
 
 | # | Задача | Где |
 |---|---|---|
-| 1 | Яндекс.Метрика ID: добавить `YANDEX_METRIKA_ID=<реальный ID>` в Environment variables Netlify (или `.env` локально) | `src/components/layout/YandexMetrika.astro` (сейчас заглушка, счётчик не грузится) |
-| 2 | Политика конфиденциальности: заменить черновик на юридически выверенный текст | `src/pages/privacy.astro` (TODO-комментарий в коде) |
+| 1 | Яндекс.Метрика ID: добавить `YANDEX_METRIKA_ID=<реальный ID>` в переменные сборки GitHub Actions (или `.env` локально) | `src/components/layout/YandexMetrika.astro` (сейчас заглушка, счётчик не грузится) |
+| 2 | Политика конфиденциальности: ответить на вопросы в `[TODO]` и заменить черновик на юридически выверенный текст | `src/pages/privacy.astro` |
+| 2a | Пароль приложения Яндекс Почты для функции формы (`SMTP_PASSWORD`) — только в консоли Yandex Cloud | Cloud Function → переменные окружения |
 | 3 | OG-изображение: заменить `public/og-image.jpg` (сейчас тёмный placeholder 1200×630) на реальное | TODO-комментарий в `src/layouts/MainLayout.astro` |
 | 4 | Favicon: проверить `public/favicon.svg` / `favicon.ico`, при необходимости заменить | `public/` |
 
@@ -59,10 +60,10 @@
 
 ## 5. После деплоя
 
-- [ ] добавить домен (Settings → Domain management), при необходимости HTTPS + Force HTTPS;
-- [ ] проверить отправку формы: форма → «Отправить заявку» → «Заявка отправлена»; заявки видны в Netlify → Forms;
+- [ ] подключить домен kaunov.com к бакету/CDN, включить HTTPS (Certificate Manager);
+- [ ] проверить отправку формы: форма → «Отправить заявку» → «Заявка отправлена»; письмо приходит на prof8888@yandex.ru;
 - [ ] проверить, что honeypot отсекает ботов (поле `bot-field` скрыто);
-- [ ] после установки домена обновить canonical/og:url (сейчас `https://vibecoder.ru/` из `astro.config.mjs` — при другом домене поправить `site` в config);
+- [ ] проверить, что canonical/og:url/sitemap/JSON-LD ведут на `https://kaunov.com` (`site` в `astro.config.mjs`);
 - [ ] подключить Яндекс.Метрику (переменная `YANDEX_METRIKA_ID`) и проверить события dataLayer: `cta_discuss`, `cta_cases`, `contact_*`, `case_open`, `faq_open`, `view_pricing`, `view_about`, `scroll_to_contact`, `form_submit`;
 - [ ] прогнать Lighthouse Mobile (цели: Performance 90+, LCP < 2.5 c, CLS < 0.1);
 - [ ] проверить 404-страницу на несуществующем URL.
