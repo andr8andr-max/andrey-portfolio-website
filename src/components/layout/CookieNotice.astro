@@ -1,0 +1,29 @@
+<div id="cookie-notice" class="hidden fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 sm:pb-6" role="region" aria-label="Уведомление о cookie-файлах">
+  <div class="mx-auto max-w-3xl rounded-xl border border-dark-700 bg-dark-900/95 backdrop-blur-sm p-4 sm:p-5 shadow-lg flex flex-col sm:flex-row sm:items-center gap-4">
+    <p class="text-sm text-dark-300 leading-relaxed flex-1">
+      Сайт использует cookie-файлы и Яндекс.Метрику для работы и статистики. Подробнее — в <a href="/privacy" class="link">Политике конфиденциальности</a>.
+    </p>
+    <button type="button" id="cookie-notice-ok" class="btn-primary text-sm whitespace-nowrap">Понятно</button>
+  </div>
+</div>
+
+<script>
+  const notice = document.getElementById('cookie-notice');
+  const okBtn = document.getElementById('cookie-notice-ok');
+  const KEY = 'cookie-notice-ack-v1';
+
+  let acknowledged = false;
+  try {
+    acknowledged = localStorage.getItem(KEY) === '1';
+  } catch (_) {}
+
+  if (notice && okBtn && !acknowledged) {
+    notice.classList.remove('hidden');
+    okBtn.addEventListener('click', () => {
+      try {
+        localStorage.setItem(KEY, '1');
+      } catch (_) {}
+      notice.classList.add('hidden');
+    });
+  }
+</script>

@@ -31,7 +31,7 @@ const altContacts = [
           name="contact"
           method="POST"
           data-endpoint={import.meta.env.PUBLIC_FORM_ENDPOINT || ''}
-          class="space-y-5"
+          class="space-y-5 ym-disable-keys ym-disable-content"
         >
           <p class="hidden" aria-hidden="true">
             <label>Не заполняйте это поле: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
@@ -75,7 +75,7 @@ const altContacts = [
 
           <label for="f-consent" class="flex items-center gap-3 cursor-pointer">
             <input id="f-consent" name="consent" type="checkbox" required class="w-5 h-5 flex-shrink-0 accent-accent cursor-pointer" />
-            <span class="text-sm text-dark-300">Согласен на обработку персональных данных *</span>
+            <span class="text-sm text-dark-300">Я согласен на обработку моих персональных данных в соответствии с <a href="/privacy" target="_blank" rel="noopener noreferrer" class="link">Политикой конфиденциальности</a> *</span>
           </label>
 
           <button type="submit" class="btn-primary w-full sm:w-auto">Отправить заявку</button>

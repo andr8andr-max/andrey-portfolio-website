@@ -28,7 +28,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        heading: ['Onest', 'system-ui', 'sans-serif'],
       },
       container: {
         center: true,

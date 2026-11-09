@@ -1,28 +1,16 @@
 ---
-// TODO: вставить реальный Яндекс.Метрика ID в .env -> YANDEX_METRIKA_ID (metrika.yandex.ru)
-// Счётчик подключится только после установки ID; без него наружу ничего не уходит.
-const id = import.meta.env.YANDEX_METRIKA_ID as string | undefined;
+// Яндекс.Метрика, счётчик 114137640 (публичный ID, не секрет).
+// Переопределить можно переменной YANDEX_METRIKA_ID при сборке.
+const id = (import.meta.env.YANDEX_METRIKA_ID as string | undefined) || '114137640';
 ---
-{
-  id ? (
-    <Fragment>
-      <script is:inline define:vars={{ id }}>
-        (function (m, e, t, r, i, k, a) {
-          m[i] = m[i] || function () { (m[i].q = m[i].q || []).push(arguments); };
-          m[i].l = 1 * new Date();
-          for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) return;
-          }
-          k = e.createElement(t); a = e.getElementsByTagName(t)[0];
-          k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
-        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-        ym(id, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true });
-      </script>
-      <noscript>
-        <div>
-          <img src={'https://mc.yandex.ru/watch/' + id} style="position:absolute; left:-9999px;" alt="" />
-        </div>
-      </noscript>
-    </Fragment>
-  ) : null
-}
+<script is:inline define:vars={{ id }}>
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=' + id, 'ym');
+
+  ym(id, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src={'https://mc.yandex.ru/watch/' + id} style="position:absolute; left:-9999px;" alt="" /></div></noscript>
